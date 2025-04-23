@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BERT Spam Email Detector</title>
+    </head>
+    <body>
+        <h1>BERT Spam Email Detector</h1>
+        <!-- <form method="post" id="email-form">
+            {% csrf_token %}
+            {{form.email_text.label}}<br>
+            {{form.email_text}}<br><br>
+            <button type="submit">Check</button>
+        </form>
+        {% if result %}
+            <h2>Result: {{ result }}</h2>
+            {% if result == 'Spam' %}
+                <p style="color: red;">This email is classified as spam.</p>
+            {% elif result == 'Not Spam' %}
+                <p style="color: green;">This email is classified as not spam.</p>
+            {% endif %}
+        {% endif %} -->
+        <form method="post">
+            {% csrf_token %}
+            <h2>Spam Email Classifier</h2>
+            
+            <label for="email_text">Enter Email Text:</label><br>
+            {{ form.email_text.label }}<br>
+            {{ form.email_text }}<br><br>
+            {{ form.email_text.errors }}<br>
+            <button type="submit">Classify</button>
+        </form>
+        
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+            
+            {% if result %}
+                <h2>Result: {{ result }}</h2>
+                {% if result == 'Spam' %}
+                    <p style="color: red;">This email is classified as spam.</p>
+                {% elif result == 'Not Spam' %}
+                    <p style="color: green;">This email is classified as not spam.</p>
+                {% endif %}
+            {% endif %}
+    </body>
+</html>
